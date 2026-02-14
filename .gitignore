@@ -8,3 +8,5 @@ wheels/
 
 # Virtual environments
 .venv
+/proxy.txt
+/data/scrapped_data/html_files/*.html
