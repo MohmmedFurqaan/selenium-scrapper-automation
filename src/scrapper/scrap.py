@@ -32,15 +32,17 @@ class OuterHtml:
 
         # fetch the link of the amazon from the site
         for page in range(1, self.page):
-            self.driver.get(f"https://www.amazon.in/s?k={self.q}&page={page}&crid=TB72HOVJNWI9&sprefix=lap%2Caps%2C553&ref=nb_sb_noss_2")
+            self.driver.get(f"https://www.flipkart.com/search?q={self.q}&otracker=search&otracker1=search&marketplace=FLIPKART&as-show=off&as=off&page={page}")
 
-        # 
-        elems = self.driver.find_elements(By.CLASS_NAME, "puis-card-container")
+        self.driver.implicitly_wait(2.1)
+        elems = self.driver.find_elements(By.CLASS_NAME, "jIjQ8S")
 
         for elem in elems:
+            self.driver.implicitly_wait(2.1)
             d = elem.get_attribute("outerHTML")
             with open(f"D:/PY/python/selenium-tutorial/data/scrapped_data/html_files/{self.q}_{self.current_page}.html", "w", encoding="utf-8") as f:
                 f.write(d)
+                self.current_page+=1
 
         # close the driver after the usage
         self.driver.close()
